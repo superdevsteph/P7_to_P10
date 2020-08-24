@@ -4,6 +4,8 @@ package com.eLibrary.moduleModel.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +35,9 @@ public class Book {
 
     @Column(name="allbookreserved")
     private Boolean allBookReserved;
+    
+    @Column(name="nextreturndate")
+    private Date nextReturnDate;
 
     @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER) //attribut Book books from library
     private Set<Library> libraries = new HashSet<>();
@@ -41,13 +46,14 @@ public class Book {
     public Book() {
     }
 
-    public Book(String bookName, String bookAuthor, String bookPictureUrl, String bookDescription, String bookLabel, Boolean allBookReserved, Set<Library> libraries) {
+    public Book(String bookName, String bookAuthor, String bookPictureUrl, String bookDescription, String bookLabel, Boolean allBookReserved, Date nextReturnDate, Set<Library> libraries) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookPictureUrl = bookPictureUrl;
         this.bookDescription = bookDescription;
         this.bookLabel = bookLabel;
         this.allBookReserved = allBookReserved;
+        this.nextReturnDate = nextReturnDate;
         this.libraries = libraries;
     }
 
@@ -115,4 +121,14 @@ public class Book {
     public void setLibraries(Set<Library> libraries) {
         this.libraries = libraries;
     }
+
+	public Date getNextReturnDate() {
+		return nextReturnDate;
+	}
+
+	public void setNextReturnDate(Date nextReturnDate) {
+		this.nextReturnDate = nextReturnDate;
+	}
+    
+    
 }
